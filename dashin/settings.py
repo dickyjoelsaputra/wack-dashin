@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-fqm1j#o63oa97%#89vv6!p*2s%8m%ut3ez!0m8-6aa$4^e(amq'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,19 +83,19 @@ WSGI_APPLICATION = 'dashin.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "testing",
-        "USER": "digital",
-        "PASSWORD": "digital",
-        "HOST": "10.13.2.2",
-        "PORT": "5432",
+        "NAME": config('DB_NAME'),
+        "USER": config('DB_USER'),
+        "PASSWORD": config('DB_PASSWORD'),
+        "HOST": config('DB_HOST'),
+        "PORT": config('DB_PORT'),
     },
     "ag_force": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "digital",
-        "USER": "digital",
-        "PASSWORD": "digital",
-        "HOST": "10.13.2.2",
-        "PORT": "5432",
+        "NAME": config('AG_DB_NAME'),
+        "USER": config('AG_DB_USER'),
+        "PASSWORD": config('AG_DB_PASSWORD'),
+        "HOST": config('AG_DB_HOST'),
+        "PORT": config('AG_DB_PORT'),
     }
 }
 
